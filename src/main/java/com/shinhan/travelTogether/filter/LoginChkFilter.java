@@ -25,7 +25,7 @@ public class LoginChkFilter implements Filter {
 	private static final String[] whiteList = {
 			"/", 
 			"/funding/fundingList*", 
-			"/funding/fundingDetail.do",
+			"/funding/fundingDetail.do*",
 			"/funding/searchFunding.do",
 			"/review/*",
 			"/auth/*",
@@ -45,9 +45,12 @@ public class LoginChkFilter implements Filter {
 		
 		HttpSession session = req.getSession();
 		String requestURI = req.getRequestURI().replaceFirst(req.getContextPath(), "");
-		System.out.println("req.getRequestURI() = "+requestURI);
 		
-		
+		if(session.getAttribute("member") == null) {
+			session.setAttribute("member", null);
+		}
+		if(requestURI.equals("/notifications/subscribe"))
+			requestURI = "/";
 		if(isLoginCheckPath(requestURI)){	// 로그인 페이지를 제외한 모든 페이지에 방문할 때
 			// 로그인 전 머물렀던 페이지 URI 저장
 			session.setAttribute("lastRequest", req.getRequestURI());

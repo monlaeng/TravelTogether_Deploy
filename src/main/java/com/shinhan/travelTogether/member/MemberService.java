@@ -1,6 +1,7 @@
 package com.shinhan.travelTogether.member;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,47 @@ public class MemberService {
 	
 	public List<MemberDTO> searchByWord(String word) {
 		return memberDAO.searchByWord(word);
+	}
+
+	public int countExistingNormalMember() {
+		return memberDAO.countExistingNormalMember();
+	}
+	
+	public int countMaleMember() {
+		return memberDAO.countMaleMember();
+	}
+	
+	public int countDeletedNormalMember() {
+		return memberDAO.countDeletedNormalMember();
+	}
+	public int getMembershipNum(String membershipId) {
+		return memberDAO.getMembershipNum(membershipId);
+	}
+	
+	public int getMoney(){
+		return memberDAO.getMoney();
+	}
+	
+	public int getQnaNum() {
+		return memberDAO.getQnaNum();
+	}
+	
+	public List<Map<String, Object>> getFundingState() {
+		return memberDAO.getFundingState();
+	}
+	
+	public List<Map<String, Object>> getMonthAgoJoinedMemberNum() {
+		return memberDAO.getMonthAgoJoinedMemberNum();
+	}
+	public List<Map<String, Object>> getMonthAgoDeletedMemberNum() {
+		return memberDAO.getMonthAgoDeletedMemberNum();
+	}
+	public int deleteMember(Integer member_id) {
+		return memberDAO.deleteMember(member_id);
+	}
+	
+	public MemberDTO selectByMemberId(Integer member_id) {
+		return memberDAO.selectByMemberId(member_id);
 	}
 
 }
